@@ -6,7 +6,10 @@
       </thead>
       <tbody>
         <tr v-for="user in users">
-          <th v-for="field in fields">
+          <th v-for="field in fields"
+            v-bind:class="field.key"
+            v-bind:title="user[field.key]"
+          >
             {{ user[field.key] }}
           </th>
         </tr>
@@ -50,5 +53,10 @@ export default {
 </script>
 
 <style scoped>
-
+.interests, .workExp, .subscriptions {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 200px;
+}
 </style>
