@@ -21,6 +21,17 @@
 import { BIconSearch } from 'bootstrap-vue'
 
 export default {
+  methods: {
+    sort () {
+      this.$store.commit('sortUsers')
+    },
+    clear () {
+      this.$store.commit('clear')
+    },
+    search () {
+      this.$store.commit('searchUsers')
+    }
+  },
   components: {
     BIconSearch
   }
@@ -46,6 +57,10 @@ input {
 
 button {
   margin-right: 15px;
+}
+
+.btn-outline-primary {
+  margin-right: 0;
 }
 
 </style>

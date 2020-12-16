@@ -1,9 +1,6 @@
 <template>
   <div id='app'>
-    <ControlBar v-on:sort=""
-      v-on:clear="$emit"
-      v-on:search="$emit()"
-    />
+    <ControlBar />
     <Table />
   </div>
 </template>
