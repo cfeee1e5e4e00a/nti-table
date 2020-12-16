@@ -16,6 +16,9 @@ export default {
     sortUsers (state) {
 
     },
+    moveSortRule (state, rule, direction) {
+
+    },
     addSortRule (state, rule) {
       const { field, filter } = rule
       const q = state.sortQueue
@@ -39,10 +42,10 @@ export default {
     sortQueue: []
   },
   getters: {
-    allUsers (state) {
+    users (state) {
       return state.users
     },
-    sortQueue (state) {
+    queue (state) {
       return state.sortQueue
     }
   }

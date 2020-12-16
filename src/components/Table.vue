@@ -58,7 +58,7 @@ export default {
   },
   computed: {
     users () {
-      return this.$store.getters.allUsers
+      return this.$store.getters.users
     }
   }
 }
