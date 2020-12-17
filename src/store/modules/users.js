@@ -125,9 +125,13 @@ export default {
   },
   state: {
     users: [],
+    savedUsers: [],
     sortQueue: []
   },
   getters: {
+    savedUsers (state) {
+      return state.savedUsers
+    },
     users (state) {
       return state.users
     },

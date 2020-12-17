@@ -1,26 +1,31 @@
 <template>
   <div>
-    <table class="table table-bordered">
-      <thead>
-        <th v-for="field in fields">{{ field.name }}</th>
-      </thead>
-      <tbody>
-        <tr>
-          <th v-for="field in fields">
-            <select class="form-select" v-bind:name="field.key" v-on:change="onSortChange">
-              <option v-for="filter in field.filter" v-bind:value="filter.key">
-                {{ filter.name }}
-              </option>
-            </select>
-          </th>
-        </tr>
-        <tr v-for="user in users">
-          <th v-for="field in fields" v-bind:class="field.key === 'color' ? user[field.key] : field.key">
-            {{ field.key === 'color' ? '' : user[field.key]  }}
-          </th>
-        </tr>
-      </tbody>
-    </table>
+    <div v-if="savedUsers.length != 0">
+      <table class="table table-bordered">
+        <thead>
+          <th v-for="field in fields">{{ field.name }}</th>
+        </thead>
+        <tbody>
+          <tr>
+            <th v-for="field in fields">
+              <select class="form-select" v-bind:name="field.key" v-on:change="onSortChange">
+                <option v-for="filter in field.filter" v-bind:value="filter.key">
+                  {{ filter.name }}
+                </option>
+              </select>
+            </th>
+          </tr>
+          <tr v-for="user in users">
+            <th v-for="field in fields" v-bind:class="field.key === 'color' ? user[field.key] : field.key">
+              {{ field.key === 'color' ? '' : user[field.key]  }}
+            </th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div v-else class="loading">
+      <img src="../assets/loading.gif">
+    </div>
   </div>
 </template>
 
@@ -57,6 +62,9 @@ export default {
     }
   },
   computed: {
+    savedUsers () {
+      return this.$store.getters.savedUsers
+    },
     users () {
       return this.$store.getters.users
     }
@@ -65,6 +73,19 @@ export default {
 </script>
 
 <style scoped>
+.loading {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  margin-top: 150px;
+  height: 96px;
+  width: 96px;
+}
+
 .interests, .workExp, .subscriptions {
   overflow: hidden;
   text-overflow: ellipsis;
