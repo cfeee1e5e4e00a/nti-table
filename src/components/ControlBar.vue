@@ -2,15 +2,25 @@
   <div class="container">
     <div class="queue">
       <ul class="list-group">
-        <li class="list-group-item" v-for="rule in queue">
+        <li class="list-group-item" v-for="(rule, i) in queue">
           <a>{{ fields[rule.field] + ' : ' + filters[rule.filter] }}</a>
           <div class="buttons">
-            <button class="btn btn-outline-primary" id="up">
-              <b-icon-arrow-up></b-icon-arrow-up>
-            </button>
-            <button class="btn btn-outline-primary" id="down">
-              <b-icon-arrow-down></b-icon-arrow-down>
-            </button>
+            <div v-if="i !== 0">
+              <button class="btn btn-outline-primary"
+                id="up"
+                v-on:click="moveRule({ field: rule.field, filter: rule.filter }, 'up')"
+              >
+                <b-icon-arrow-up></b-icon-arrow-up>
+              </button>
+            </div>
+            <div v-if="i !== queue.length - 1">
+              <button class="btn btn-outline-primary"
+                id="down"
+                v-on:click="moveRule({ field: rule.field, filter: rule.filter }, 'down')"
+              >
+                <b-icon-arrow-down></b-icon-arrow-down>
+              </button>
+            </div>
           </div>
         </li>
       </ul>
@@ -66,21 +76,29 @@ export default {
       filters: {
         asc: 'по возр.',
         desc: 'по убыв.',
-        red: 'красн.',
-        green: 'зелен.',
-        blue: 'синий',
-        man: 'муж.',
-        woman: 'жен.',
-        nospec: 'не указ.'
+        red: 'red',
+        green: 'green.',
+        blue: 'blue',
+        man: 'Муж.',
+        woman: 'Жен.',
+        nospec: '-',
+        haveava: 'Да',
+        noava: 'Нет'
       }
     }
   },
   methods: {
+    moveRule (rule, direction) {
+      rule.direction = direction
+      console.dir(rule)
+      this.$store.commit('moveSortRule', rule)
+      this.$forceUpdate()
+    },
     sort () {
       this.$store.commit('sortUsers')
     },
     clear () {
-      this.$store.commit('clear')
+      this.$store.commit('restoreUsers')
     },
     search () {
       this.$store.commit('searchUsers')
@@ -148,8 +166,11 @@ a {
   margin-right: 15px;
 }
 
+#down {
+  margin-left: 15px;
+}
+
 #up {
   margin-left: 15px;
-  margin-right: 15px;
 }
 </style>

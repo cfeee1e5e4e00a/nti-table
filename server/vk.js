@@ -19,6 +19,7 @@ function User(uo, subo, fcnt) {
     this.phone = uo.mobile_phone || uo.home_phone || '-';
     this.email = 'N/A';
 
+    // TODO: fix date (тупые амеры мм/дд/гггг)
     // age
     if (uo.bdate) {
         let darr = uo.bdate.split('.');
@@ -43,7 +44,9 @@ function User(uo, subo, fcnt) {
         if(Date.now() - uo.last_seen.time*1000 > 1000*60*60*24*365){
             this.color = 'red';
         }
-        this.lastSeen = `${lastDate.getDate()}.${lastDate.getMonth()+1}.${lastDate.getFullYear()}`
+        const timeToStr = (t) => t < 10 ? `0${t}` : t
+
+        this.lastSeen = `${timeToStr(lastDate.getDate())}.${timeToStr(lastDate.getMonth()+1)}.${lastDate.getFullYear()}`;
     }
 
     // career

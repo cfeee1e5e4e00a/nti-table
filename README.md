@@ -6,7 +6,9 @@
 ```git clone https://github.com/nerlihmax/nti-table```
 ```cd nti-table```
 ```npm i```
+```cd server```
+```npm i```
 
 ## Использование
-```npm run start```
-
+```npm run server```
+```npm run serve```

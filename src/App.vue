@@ -24,5 +24,7 @@ export default {
 <style scoped>
 #app {
   margin: 1rem;
+  font-family: monospace;
+  font-size: 18px;
 }
 </style>
