@@ -10,5 +10,6 @@
 ```npm i```
 
 ## Использование
-```npm run server```
+из директории nti-table
+```npm run backend```
 ```npm run serve```
