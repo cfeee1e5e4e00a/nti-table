@@ -10,6 +10,17 @@ export default {
     }
   },
   mutations: {
+    searchUsers (state, request) {
+      state.users = state.users.filter(user => {
+        let result = false
+        console.log(user)
+        for (let field in user) {
+          field = user[field]
+          if (field.toLowerCase().search(request.toLowerCase()) !== -1) result = true
+        }
+        return result
+      })
+    },
     updateUsers (state, users) {
       state.savedUsers = users
       state.users = users

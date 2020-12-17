@@ -37,6 +37,7 @@
             placeholder="Поиск"
             aria-describedby="search"
             id="search-request"
+            v-model="searchRequest"
           >
         </div>
         <button type="button"
@@ -84,7 +85,8 @@ export default {
         nospec: '-',
         haveava: 'Да',
         noava: 'Нет'
-      }
+      },
+      searchRequest: ''
     }
   },
   methods: {
@@ -101,7 +103,8 @@ export default {
       this.$store.commit('restoreUsers')
     },
     search () {
-      this.$store.commit('searchUsers')
+      this.$store.commit('searchUsers', this.searchRequest)
+      this.searchRequest = ''
     }
   },
   computed: {
