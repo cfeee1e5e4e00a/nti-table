@@ -17,7 +17,7 @@ function User(uo, subo, fcnt) {
     this.friendsCount = fcnt;
     this.subscribersCount = '-';
     this.phone = uo.mobile_phone || uo.home_phone || '-';
-    this.email = 'N/A';
+    this.email = '-';
 
     // TODO: fix date (тупые амеры мм/дд/гггг)
     // age
